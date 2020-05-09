@@ -43,7 +43,8 @@ while True:
             cv2.putText(frame, "1", (160, 60),
 			    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
         continue
-    cv2.imshow("result", result)
-    start=end
-    if cv2.waitKey(1) & 0xff == ord('q'):
-        break
+    else :
+        cv2.imshow("result", result)
+        start=end
+        if cv2.waitKey(1) & 0xff == ord('q'):
+            break
