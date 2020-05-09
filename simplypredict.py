@@ -26,23 +26,24 @@ while True:
     normalized = (image_array.astype(np.float32) / 127.0) - 1
     data[0] = normalized
     end=time.time()
-    if(end-start<3):
+    pre = model.predict(data)
+    result = cv2.imread(s[np.argmax(pre[0])])
+    cv2.imshow("img", frame)
+    if(end-start<6):
         cv2.putText(frame, "Deliver in", (160, 30),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-        if(end-start<1):
+        print(end-start)
+        if(end-start<2):
             cv2.putText(frame, "3", (160, 60),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-        elif(end-start<1):
+			    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+        elif(end-start<4):
             cv2.putText(frame, "2", (160, 60),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+			    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
         else:
             cv2.putText(frame, "1", (160, 60),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    else:
-        pre = model.predict(data)
-        result = cv2.imread(s[np.argmax(pre[0])])
-        cv2.imshow("img", frame)
-        cv2.imshow("result", result)
-        start=end
-        if cv2.waitKey(1) & 0xff == ord('q'):
-            break
+			    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+        continue
+    cv2.imshow("result", result)
+    start=end
+    if cv2.waitKey(1) & 0xff == ord('q'):
+        break
