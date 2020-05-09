@@ -10,3 +10,5 @@ The model is trained using teachable machine .with four label classes
 
 simplypredict.py -- It simply predicts our move and show it on the other frame.
 
+
+main.py -- is an attemp towards making the game where the other frame continously shows  random images logically wrong!!
