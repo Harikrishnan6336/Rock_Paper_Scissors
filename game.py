@@ -1,4 +1,3 @@
-
 REV_CLASS_MAP = {
     0: "rock",
     1: "paper",
@@ -12,9 +11,9 @@ def mapper(val):
     return REV_CLASS_MAP[val]
 
 def calculate_winner(move1, move2):
-    if move1 == move2:
-        return "Tie"
-
+    #print(move1)
+    #print(move2)
+    
     if move1 == "rock":
         if move2 == 2:
             return "User"
@@ -28,7 +27,9 @@ def calculate_winner(move1, move2):
             return "Computer"
 
     if move1 == "scissors":
-        if move2 == 2:
+        if move2 == 1:
             return "User"
         if move2 == 0:
             return "Computer"
+
+    return "Tie"
