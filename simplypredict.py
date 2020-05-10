@@ -21,7 +21,7 @@ while True:
         continue
 
     frame = cv2.rectangle(frame, (360, 100), (610, 350), (0, 0, 255), 3)
-    frame2 = frame[70:340, 70:340]
+    frame2 = frame[360:610, 100:350]
     check=5-end+start
     cv2.putText(frame, "Deliver within {}".format(int(check)), (200, 30),
 		cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
