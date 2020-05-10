@@ -28,7 +28,6 @@ while True:
     normalized = (image_array.astype(np.float32) / 127.0) - 1
     data[0] = normalized
 
-    # pre = model.predict(data)
 
     winner = "None"
 
@@ -38,40 +37,45 @@ while True:
     inp = move_code
     #print(move_code)
     firsttime = 1
+
    
     while(move_code == inp and move_code != 3):
         ret, frame = img.read()
         frame = cv2.flip(frame, 1)
+        frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
         if not ret:
             continue
         if(firsttime == 1):
             t = random.choice([0, 1, 2])
+            computer_move_name = mapper(t)
+            print("kk")
             firsttime = 0
+            #frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
+            frame2 = frame[70:340, 70:340]
+            image = cv2.resize(frame2, (224, 224))
+            image_array = np.asarray(image)
+            normalized = (image_array.astype(np.float32) / 127.0) - 1
+            data[0] = normalized
 
-        frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
-        frame2 = frame[70:340, 70:340]
-        image = cv2.resize(frame2, (224, 224))
-        image_array = np.asarray(image)
-        normalized = (image_array.astype(np.float32) / 127.0) - 1
-        data[0] = normalized
+            pred = model.predict(data)
+            move_code = np.argmax(pred[0])
+            user_move_name = mapper(move_code)
+            result = cv2.imread(s[t])
 
-        pred = model.predict(data)
-        #print(pred)
-        move_code = np.argmax(pred[0])
-        
-        user_move_name = mapper(move_code)
-        result = cv2.imread(s[t])
-
-        if user_move_name != "none":
-            computer_move_name = t
-            winner = calculate_winner(user_move_name, computer_move_name)
+            if user_move_name != "none":
+                #computer_move_name = t
+                winner = calculate_winner(user_move_name, computer_move_name)
        
-        font = cv2.FONT_HERSHEY_SIMPLEX
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            cv2.putText(frame,  "Winner : ", (40, 440), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+            cv2.putText(frame,  winner, (250, 440), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+
+            cv2.imshow("img", frame)
+            cv2.imshow("result", result)
+
         cv2.putText(frame,  "Winner : ", (40, 440), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
         cv2.putText(frame,  winner, (250, 440), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
-
-        cv2.imshow("img", frame)
-        cv2.imshow("result", result)
+        cv2.imshow("img", frame)   
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
 
