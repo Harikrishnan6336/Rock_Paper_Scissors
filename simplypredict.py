@@ -31,10 +31,8 @@ while True:
     cv2.imshow("img", frame)  
     pre = model.predict(data)
     result = cv2.imread(s[np.argmax(pre[0])])
-    cv2.putText(frame, "Deliver in", (160, 30),
+    cv2.putText(frame, "Deliver in every 4 seconds", (160, 30),
 		cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    cv2.putText(frame, "{:.2f}".format((end-start)%1), (160, 60),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
     if(end-start>4):
         start=end 
         cv2.imshow("result", result)
