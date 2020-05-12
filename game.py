@@ -15,21 +15,21 @@ def calculate_winner(move1, move2):
     #print(move2)
     
     if move1 == "rock":
-        if move2 == 2:
+        if move2 == "scissors":
             return "User"
-        if move2 == 1:
+        if move2 == "paper":
             return "Computer"
 
     if move1 == "paper":
-        if move2 == 0:
+        if move2 == "rock":
             return "User"
-        if move2 == 2:
+        if move2 == "scissors":
             return "Computer"
 
     if move1 == "scissors":
-        if move2 == 1:
+        if move2 == "paper":
             return "User"
-        if move2 == 0:
+        if move2 == "rock":
             return "Computer"
 
     return "Tie"
