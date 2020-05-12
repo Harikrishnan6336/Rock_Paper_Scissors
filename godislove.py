@@ -40,7 +40,7 @@ while True:
     start=time.time()
     end=time.time()
     check=0.0
-    while(move_code == inp and move_code != 3):
+    while(True):
         end=time.time()
         check=end-start
         ret, frame = img.read()
@@ -83,15 +83,15 @@ while True:
         cv2.putText(frame,  winner, (250, 400), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         if(firsttime == 0):
             cv2.putText(frame,  "Press 's' to continue...", (250, 450), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
-
+            cv2.putText(frame,  "Press 'q' to Quit", (350, 400), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
         cv2.imshow("img", frame)   
         if cv2.waitKey(1) & 0xff == ord('s'):
             start=time.time()
             break
-
+    
     result = cv2.imread(s[3])
     cv2.imshow("img", frame)
     cv2.imshow("result", result)
 
-    if cv2.waitKey(1) & 0xff == ord('q'):
-        break
+    
+                                                                                                                      
