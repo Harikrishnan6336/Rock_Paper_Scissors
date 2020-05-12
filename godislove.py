@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import random
 from game import mapper, calculate_winner
-
+import time
 np.set_printoptions(suppress=True)
 model = tensorflow.keras.models.load_model("keras_model.h5")
 
@@ -37,9 +37,12 @@ while True:
     inp = move_code
     #print(move_code)
     firsttime = 1
-
-   
-    while(move_code == inp and move_code != 3):
+    start=time.time()
+    end=time.time()
+    check=0.0
+    while(True):
+        end=time.time()
+        check=end-start
         ret, frame = img.read()
         frame = cv2.flip(frame, 1)
         frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
@@ -49,7 +52,6 @@ while True:
             t = random.choice([0, 1, 2])
             computer_move_name = mapper(t)
             print("kk")
-            firsttime = 0
             #frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
             frame2 = frame[70:340, 70:340]
             image = cv2.resize(frame2, (224, 224))
@@ -69,22 +71,27 @@ while True:
             font = cv2.FONT_HERSHEY_SIMPLEX
             cv2.putText(frame,  "Winner : ", (40, 440), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
             cv2.putText(frame,  winner, (250, 440), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
-
+            
             cv2.imshow("img", frame)
-            cv2.imshow("result", result)
+            if(check<4):
+                cv2.putText(frame,  "Deliver in {}".format(4-int(check)) , (40, 350), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
+            elif(check>=4):
+                cv2.imshow("result", result)
+                firsttime = 0
 
         cv2.putText(frame,  "Winner : ", (40, 400), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame,  winner, (250, 400), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         if(firsttime == 0):
             cv2.putText(frame,  "Press 's' to continue...", (250, 450), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
-
+            cv2.putText(frame,  "Press 'q' to Quit", (350, 400), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
         cv2.imshow("img", frame)   
         if cv2.waitKey(1) & 0xff == ord('s'):
+            start=time.time()
             break
-
+    
     result = cv2.imread(s[3])
     cv2.imshow("img", frame)
     cv2.imshow("result", result)
 
-    if cv2.waitKey(1) & 0xff == ord('q'):
-        break
+    
+                                                                                                                      
