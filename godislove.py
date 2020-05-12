@@ -4,6 +4,7 @@ import cv2
 import random
 from game import mapper, calculate_winner
 import time
+
 np.set_printoptions(suppress=True)
 model = tensorflow.keras.models.load_model("keras_model.h5")
 
@@ -14,7 +15,7 @@ s = ["images/0.jfif", "images/1.jfif", "images/2.png", "images/3.jfif"]
 img = cv2.VideoCapture(0)
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 prev_move = None
-
+firsttime = 0
 while True:
     ret, frame = img.read()
     frame = cv2.flip(frame, 1)
@@ -36,7 +37,7 @@ while True:
     move_code = np.argmax(pred[0])
     inp = move_code
     #print(move_code)
-    firsttime = 1
+    
     start=time.time()
     end=time.time()
     check=0.0
@@ -46,6 +47,7 @@ while True:
         ret, frame = img.read()
         frame = cv2.flip(frame, 1)
         frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
+        font = cv2.FONT_HERSHEY_SIMPLEX
         if not ret:
             continue
         if(firsttime == 1):
@@ -68,12 +70,13 @@ while True:
                 #computer_move_name = t
                 winner = calculate_winner(user_move_name, computer_move_name)
        
-            font = cv2.FONT_HERSHEY_SIMPLEX
+            
             
             
             cv2.imshow("img", frame)
             if(check<4):
-                cv2.putText(frame,  "Deliver in {}".format(4-int(check)) , (40, 350), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
+                cv2.putText(frame,  "Deliver in {}".format(4-int(check)) , (115, 320), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
+
             elif(check>=4):
                 cv2.imshow("result", result)
                 cv2.putText(frame,  "Winner : ", (40, 400), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
@@ -84,10 +87,11 @@ while True:
         if(firsttime == 0):
             cv2.putText(frame,  "Winner : ", (40, 400), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
             cv2.putText(frame,  winner, (250, 400), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
-            cv2.putText(frame,  "Press 's' to continue...", (250, 450), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+            cv2.putText(frame,  "Press S to Play", (80, 210), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
             
         cv2.imshow("img", frame)   
         if cv2.waitKey(1) & 0xff == ord('s'):
+            firsttime=1
             start=time.time()
             break
     
