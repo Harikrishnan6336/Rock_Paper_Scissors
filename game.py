@@ -16,20 +16,20 @@ def calculate_winner(move1, move2):
     
     if move1 == "rock":
         if move2 == "scissors":
-            return "User"
+            return 1
         if move2 == "paper":
-            return "Computer"
+            return 0
 
     if move1 == "paper":
         if move2 == "rock":
-            return "User"
+            return 1
         if move2 == "scissors":
-            return "Computer"
+            return 0
 
     if move1 == "scissors":
         if move2 == "paper":
-            return "User"
+            return 1
         if move2 == "rock":
-            return "Computer"
+            return 0
 
     return "Tie"

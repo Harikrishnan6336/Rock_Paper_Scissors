@@ -17,10 +17,14 @@ img = cv2.VideoCapture(0)
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 firsttime = False
 exit = False
-
+you=0
+ai=0
 while True:
+    font = cv2.FONT_HERSHEY_SIMPLEX
     ret, frame = img.read()
     frame = cv2.flip(frame, 1)
+    
+        
     if not ret:
         continue
 
@@ -40,13 +44,22 @@ while True:
     start = time.time()
     end = time.time()
     check = 0.0
+    
     while(True):
+        
         end = time.time()
         check = end-start
         ret, frame = img.read()
         frame = cv2.flip(frame, 1)
         frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
-        font = cv2.FONT_HERSHEY_SIMPLEX
+        cv2.putText(frame,  "------".format(you), (475, 87),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame,  "You : {}".format(you), (495, 117),font, 1, (0, 0, 0), 2, cv2.LINE_AA)  
+        cv2.putText(frame,  "A.I : {}".format(ai), (515, 157),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame,  "------".format(you), (475, 187),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        for i in range(112,192,50):
+            cv2.putText(frame,  "|".format(you), (475, i),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+            cv2.putText(frame,  "|".format(you), (625, i),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+
         if not ret:
             continue
 
@@ -64,10 +77,7 @@ while True:
             move_code = np.argmax(pred[0])
             user_move_name = mapper(move_code)
             result = cv2.imread(s[t])
-
-            if user_move_name != "none":
-                winner = calculate_winner(user_move_name, computer_move_name)
-            else:
+            if(user_move_name == "none"):
                 result = cv2.imread(s[3])
 
             cv2.imshow("img", frame)
@@ -81,6 +91,15 @@ while True:
                             font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 cv2.putText(frame,  winner, (250, 400), font,
                             1, (0, 255, 0), 2, cv2.LINE_AA)
+                if user_move_name != "none":
+                    result = calculate_winner(user_move_name, computer_move_name)
+                    if(result==0):
+                        ai=ai+1
+                        winner="A.I"
+                    else:
+                        you=you+1
+                        winner="Y.O.U"
+                
                 firsttime = False
 
         if(not firsttime):
