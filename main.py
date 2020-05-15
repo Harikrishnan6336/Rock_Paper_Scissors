@@ -17,14 +17,13 @@ img = cv2.VideoCapture(0)
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 firsttime = False
 exit = False
-you=0
-ai=0
+you = 0
+ai = 0
 while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     ret, frame = img.read()
     frame = cv2.flip(frame, 1)
-    
-        
+
     if not ret:
         continue
 
@@ -44,21 +43,29 @@ while True:
     start = time.time()
     end = time.time()
     check = 0.0
-    
+
     while(True):
-        
+
         end = time.time()
         check = end-start
         ret, frame = img.read()
         frame = cv2.flip(frame, 1)
         frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
-        cv2.putText(frame,  "------".format(you), (475, 87),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
-        cv2.putText(frame,  "You : {}".format(you), (495, 117),font, 1, (0, 0, 0), 2, cv2.LINE_AA)  
-        cv2.putText(frame,  "A.I : {}".format(ai), (515, 157),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
-        cv2.putText(frame,  "------".format(you), (475, 187),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
-        for i in range(112,192,50):
-            cv2.putText(frame,  "|".format(you), (475, i),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
-            cv2.putText(frame,  "|".format(you), (625, i),font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame,  "------".format(you), (3, 87),
+                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame,  "You : {}".format(you), (25, 117),
+                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame,  "A.I : {}".format(ai), (45, 157),
+                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame,  "------".format(you), (3, 187),
+                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+
+        for i in range(112, 192, 50):
+            cv2.putText(frame,  "|".format(you), (155, i),
+                        font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+
+            cv2.putText(frame,  "|".format(you), (0, i),
+                        font, 1, (0, 0, 0), 2, cv2.LINE_AA)
 
         if not ret:
             continue
@@ -87,19 +94,20 @@ while True:
 
             elif(check >= 4):
                 cv2.imshow("result", result)
-                cv2.putText(frame,  "Winner : ", (40, 400),
+                cv2.putText(frame,  "Winner : ", (410, 400),
                             font, 1, (0, 255, 0), 2, cv2.LINE_AA)
-                cv2.putText(frame,  winner, (250, 400), font,
+                cv2.putText(frame,  winner, (410, 400), font,
                             1, (0, 255, 0), 2, cv2.LINE_AA)
                 if user_move_name != "none":
-                    result = calculate_winner(user_move_name, computer_move_name)
-                    if(result==0):
-                        ai=ai+1
-                        winner="A.I"
+                    result = calculate_winner(
+                        user_move_name, computer_move_name)
+                    if(result == 0):
+                        ai = ai+1
+                        winner = "A.I"
                     else:
-                        you=you+1
-                        winner="Y.O.U"
-                
+                        you = you+1
+                        winner = "Y.O.U"
+
                 firsttime = False
 
         if(not firsttime):
