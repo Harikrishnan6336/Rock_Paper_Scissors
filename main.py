@@ -83,9 +83,8 @@ while True:
             pred = model.predict(data)
             move_code = np.argmax(pred[0])
             user_move_name = mapper(move_code)
+            print(user_move_name)
             result = cv2.imread(s[t])
-            if(user_move_name == "none"):
-                result = cv2.imread(s[3])
 
             cv2.imshow("img", frame)
             if(check < 4):
@@ -98,6 +97,8 @@ while True:
                             font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 cv2.putText(frame,  winner, (480, 385), font,
                             1, (0, 255, 0), 2, cv2.LINE_AA)
+                if(user_move_name == "none"):
+                    result = cv2.imread(s[3])
                 if user_move_name != "none":
                     result = calculate_winner(
                         user_move_name, computer_move_name)
