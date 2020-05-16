@@ -143,5 +143,6 @@ while True:
     cv2.imshow("img", frame)
     cv2.imshow("A.I move", ai_frame)
 
+
 img.release()
 cv2.destroyAllWindows()
