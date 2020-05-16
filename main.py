@@ -141,6 +141,5 @@ while True:
     cv2.imshow("img", frame)
     cv2.imshow("result", result)
 
-
 img.release()
 cv2.destroyAllWindows()
