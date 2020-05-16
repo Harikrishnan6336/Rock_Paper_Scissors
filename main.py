@@ -36,7 +36,7 @@ while True:
 
     winner = "None"
 
-    result = cv2.imread(s[3])
+    ai_frame = cv2.imread(s[3])
     pred = model.predict(data)
     move_code = np.argmax(pred[0])
 
@@ -80,8 +80,8 @@ while True:
             elif(check>=3.5 and gate==1):
                 t = random.choice([0, 1, 2])
                 computer_move_name = mapper(t)
-                result = cv2.imread(s[t])
-                cv2.imshow("A.I move", result)
+                ai_frame = cv2.imread(s[t])
+                cv2.imshow("A.I move", ai_frame)
                 gate=0
             elif(check >= 4):
                 frame2 = frame[320:590, 70:310]
@@ -93,7 +93,7 @@ while True:
                 move_code = np.argmax(pred[0])
                 user_move_name = mapper(move_code)
                 if(user_move_name == "none"):
-                    result = cv2.imread(s[3])
+                    ai_frame = cv2.imread(s[3])
                 if user_move_name != "none":
                     result = calculate_winner(
                         user_move_name, computer_move_name)
@@ -141,7 +141,7 @@ while True:
     if(exit):
         break
     cv2.imshow("img", frame)
-    cv2.imshow("A.I move", result)
+    cv2.imshow("A.I move", ai_frame)
 
 
 img.release()
