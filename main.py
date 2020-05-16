@@ -104,9 +104,11 @@ while True:
                     if(result == 0):
                         ai = ai+1
                         winner = "A.I"
-                    else:
+                    elif(result == 1):
                         you = you+1
                         winner = "Y.O.U"
+                    else:
+                        winner = "TIE"
 
                 firsttime = False
 
