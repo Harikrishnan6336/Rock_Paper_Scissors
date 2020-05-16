@@ -5,15 +5,15 @@ REV_CLASS_MAP = {
     3: "none"
 }
 
-#  0_Rock  1_Paper  2_Scissors  
+#  0_Rock  1_Paper  2_Scissors
+
 
 def mapper(val):
     return REV_CLASS_MAP[val]
 
+
 def calculate_winner(move1, move2):
-    #print(move1)
-    #print(move2)
-    
+
     if move1 == "rock":
         if move2 == "scissors":
             return 1
