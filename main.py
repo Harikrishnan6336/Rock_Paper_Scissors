@@ -27,8 +27,8 @@ while True:
     if not ret:
         continue
 
-    frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
-    frame2 = frame[70:340, 70:340]
+    frame = cv2.rectangle(frame, (320, 70), (590, 310), (0, 0, 255), 3)
+    frame2 = frame[320:590, 70:310]
     image = cv2.resize(frame2, (224, 224))
     image_array = np.asarray(image)
     normalized = (image_array.astype(np.float32) / 127.0) - 1
@@ -50,7 +50,7 @@ while True:
         check = end-start
         ret, frame = img.read()
         frame = cv2.flip(frame, 1)
-        frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
+        frame = cv2.rectangle(frame, (320, 70), (590, 310), (0, 0, 255), 3)
         cv2.putText(frame,  "------".format(you), (3, 87),
                     font, 1, (0, 0, 0), 2, cv2.LINE_AA)
         cv2.putText(frame,  "You : {}".format(you), (25, 117),
@@ -73,8 +73,8 @@ while True:
         if(firsttime):
             t = random.choice([0, 1, 2])
             computer_move_name = mapper(t)
-            frame = cv2.rectangle(frame, (70, 70), (340, 340), (0, 0, 255), 3)
-            frame2 = frame[70:340, 70:340]
+            frame = cv2.rectangle(frame, (320, 70), (590, 310), (0, 0, 255), 3)
+            frame2 = frame[320:590, 70:310]
             image = cv2.resize(frame2, (224, 224))
             image_array = np.asarray(image)
             normalized = (image_array.astype(np.float32) / 127.0) - 1
@@ -90,13 +90,13 @@ while True:
             cv2.imshow("img", frame)
             if(check < 4):
                 cv2.putText(frame,  "Deliver in {}".format(
-                    4-int(check)), (115, 320), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
+                    4-int(check)), (365, 300), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
 
             elif(check >= 4):
                 cv2.imshow("result", result)
-                cv2.putText(frame,  "Winner : ", (410, 400),
+                cv2.putText(frame,  "Winner : ", (350, 385),
                             font, 1, (0, 255, 0), 2, cv2.LINE_AA)
-                cv2.putText(frame,  winner, (410, 400), font,
+                cv2.putText(frame,  winner, (480, 385), font,
                             1, (0, 255, 0), 2, cv2.LINE_AA)
                 if user_move_name != "none":
                     result = calculate_winner(
@@ -111,11 +111,11 @@ while True:
                 firsttime = False
 
         if(not firsttime):
-            cv2.putText(frame,  "Winner : ", (40, 400),
+            cv2.putText(frame,  "Winner : ", (350, 385),
                         font, 1, (0, 255, 0), 2, cv2.LINE_AA)
-            cv2.putText(frame,  winner, (250, 400), font,
+            cv2.putText(frame,  winner, (480, 385), font,
                         1, (0, 255, 0), 2, cv2.LINE_AA)
-            cv2.putText(frame,  "Press S to Play", (80, 210),
+            cv2.putText(frame,  "Press S to Play", (330, 210),
                         font, 1, (0, 255, 255), 2, cv2.LINE_AA)
 
         cv2.imshow("img", frame)
