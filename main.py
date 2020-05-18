@@ -43,7 +43,7 @@ while True:
     start = time.time()
     end = time.time()
     check = 0.0
-    gate= 1
+    gate = 1
 
     while(True):
 
@@ -72,19 +72,20 @@ while True:
             continue
 
         if(firsttime):
-            frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
+            frame = cv2.rectangle(
+                frame, (320, 100), (590, 340), (0, 0, 255), 3)
             cv2.imshow("img", frame)
             if(check < 4):
                 cv2.putText(frame,  "Deliver in {}".format(
                     4-int(check)), (365, 300), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
-            elif(check>=3.5 and gate==1):
+            elif(check >= 3.5 and gate == 1):
                 t = random.choice([0, 1, 2])
                 computer_move_name = mapper(t)
                 ai_frame = cv2.imread(s[t])
                 cv2.imshow("A.I move", ai_frame)
-                gate=0
+                gate = 0
             elif(check >= 4):
-                frame2 = frame[320:590, 70:310]
+                frame2 = frame[320:590, 100:340]
                 image = cv2.resize(frame2, (224, 224))
                 image_array = np.asarray(image)
                 normalized = (image_array.astype(np.float32) / 127.0) - 1
@@ -109,7 +110,8 @@ while True:
                             font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 cv2.putText(frame,  winner, (480, 385), font,
                             1, (0, 255, 0), 2, cv2.LINE_AA)
-                print("user :"+user_move_name+"    A.I :"+computer_move_name+"    Winner:"+winner)
+                print("user :"+user_move_name+"    A.I :" +
+                      computer_move_name+"    Winner:"+winner)
                 firsttime = False
 
         if(not firsttime):
@@ -126,7 +128,7 @@ while True:
         if cv2.waitKey(1) & 0xff == ord('s'):
             firsttime = True
             start = time.time()
-            gate=1
+            gate = 1
             break
 
         # To Exit from the game...
