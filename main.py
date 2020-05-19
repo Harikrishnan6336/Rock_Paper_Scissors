@@ -6,7 +6,7 @@ from game import mapper, calculate_winner
 import time
 
 np.set_printoptions(suppress=True)
-model = tensorflow.keras.models.load_model("keras_model.h5")
+model = tensorflow.keras.models.load_model("rock-paper-scissors-model.h5")
 
 #  0_Rock  1_Paper  2_Scissors  3_YourTurn
 
@@ -14,7 +14,7 @@ s = ["images/0.png", "images/1.png", "images/2.png", "images/3.jfif"]
 
 # Setting default cam to webcam and necesseary variables
 img = cv2.VideoCapture(0)
-data = np.ndarray(shape=(1, 150, 150, 3), dtype=np.float32)
+data = np.ndarray(shape=(1, 227, 227, 3), dtype=np.float32)
 firsttime = False
 exit = False
 you = 0
@@ -29,7 +29,7 @@ while True:
 
     frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
     frame2 = frame[320:590, 100:340]
-    image = cv2.resize(frame2, (150, 150))
+    image = cv2.resize(frame2, (227, 227))
     image_array = np.asarray(image)
     normalized = (image_array.astype(np.float32) / 127.0) - 1
     data[0] = normalized
@@ -86,7 +86,7 @@ while True:
                 gate = 0
             elif(check >= 4):
                 frame2 = frame[320:590, 100:340]
-                image = cv2.resize(frame2, (150, 150))
+                image = cv2.resize(frame2, (227, 227))
                 image_array = np.asarray(image)
                 normalized = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized
