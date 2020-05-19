@@ -6,7 +6,7 @@ from game import mapper, calculate_winner
 import time
 
 np.set_printoptions(suppress=True)
-model = tensorflow.keras.models.load_model("keras_model.h5")
+model = tensorflow.keras.models.load_model("rps.h5")
 
 #  0_Rock  1_Paper  2_Scissors  3_YourTurn
 
