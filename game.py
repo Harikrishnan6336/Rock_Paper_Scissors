@@ -1,4 +1,4 @@
-REV_CLASS_MAP = {
+MOVES = {
     0: "rock",
     1: "paper",
     2: "scissors",
@@ -8,11 +8,7 @@ REV_CLASS_MAP = {
 #  0_Rock  1_Paper  2_Scissors
 
 
-def mapper(val):
-    return REV_CLASS_MAP[val]
-
-
-def calculate_winner(move1, move2):
+def find_winner(move1, move2):
 
     if move1 == "rock":
         if move2 == "scissors":
@@ -33,3 +29,7 @@ def calculate_winner(move1, move2):
             return 0
 
     return "Tie"
+
+
+def move_conv(val):
+    return MOVES[val]
