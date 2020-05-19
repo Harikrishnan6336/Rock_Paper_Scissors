@@ -14,7 +14,7 @@ s = ["images/0.png", "images/1.png", "images/2.png", "images/3.jfif"]
 
 # Setting default cam to webcam and necesseary variables
 img = cv2.VideoCapture(0)
-data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+data = np.ndarray(shape=(1, 150, 150, 3), dtype=np.float32)
 firsttime = False
 exit = False
 you = 0
@@ -29,7 +29,7 @@ while True:
 
     frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
     frame2 = frame[320:590, 100:340]
-    image = cv2.resize(frame2, (224, 224))
+    image = cv2.resize(frame2, (150, 150))
     image_array = np.asarray(image)
     normalized = (image_array.astype(np.float32) / 127.0) - 1
     data[0] = normalized
@@ -86,7 +86,7 @@ while True:
                 gate = 0
             elif(check >= 4):
                 frame2 = frame[320:590, 100:340]
-                image = cv2.resize(frame2, (224, 224))
+                image = cv2.resize(frame2, (150, 150))
                 image_array = np.asarray(image)
                 normalized = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized
