@@ -1,85 +1,59 @@
 import cv2
+import os
 import numpy as np
 from keras_squeezenet import SqueezeNet
 from keras.optimizers import Adam
-from keras.utils import np_utils
-from keras.layers import Activation, Dropout, Convolution2D, GlobalAveragePooling2D
+from tensorflow.python.keras.utils import np_utils
+from keras.layers import Dropout, GlobalAveragePooling2D, Conv2D, Dense
 from keras.models import Sequential
-import tensorflow as tf
-import os
 
-IMG_SAVE_PATH = 'image_data'
+IMG_SAVE_PATH = 'train_data'
 
-CLASS_MAP = {
+CODES = {
     "rock": 0,
     "paper": 1,
     "scissors": 2,
     "none": 3
 }
 
-NUM_CLASSES = len(CLASS_MAP)
+NUM_CLASSES = len(CODES)
 
 
-def mapper(val):
-    return CLASS_MAP[val]
+def code_conv(val):
+    return CODES[val]
 
 
-def get_model():
-    model = Sequential([
-        SqueezeNet(input_shape=(227, 227, 3), include_top=False),
-        Dropout(0.5),
-        Convolution2D(NUM_CLASSES, (1, 1), padding='valid'),
-        Activation('relu'),
-        GlobalAveragePooling2D(),
-        Activation('softmax')
-    ])
-    return model
-
-
-# load images from the directory
 dataset = []
 for directory in os.listdir(IMG_SAVE_PATH):
     path = os.path.join(IMG_SAVE_PATH, directory)
     if not os.path.isdir(path):
         continue
     for item in os.listdir(path):
-        # to make sure no hidden files get in our way
+
         if item.startswith("."):
             continue
         img = cv2.imread(os.path.join(path, item))
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, (227, 227))
+        img = cv2.resize(img, (240, 240))
         dataset.append([img, directory])
 
-'''
-dataset = [
-    [[...], 'rock'],
-    [[...], 'paper'],
-    ...
-]
-'''
 data, labels = zip(*dataset)
-labels = list(map(mapper, labels))
-
-
-'''
-labels: rock,paper,paper,scissors,rock...
-one hot encoded: [1,0,0], [0,1,0], [0,1,0], [0,0,1], [1,0,0]...
-'''
-
-# one hot encode the labels
+labels = list(map(code_conv, labels))
 labels = np_utils.to_categorical(labels)
 
-# define the model
-model = get_model()
-model.compile(
-    optimizer=Adam(lr=0.0001),
-    loss='categorical_crossentropy',
-    metrics=['accuracy']
-)
+model = Sequential()
+model.add(SqueezeNet(input_shape=(240, 240, 3), include_top=False))
+model.add(Dropout(0.25))
+model.add(Conv2D(32, (1, 1), padding='valid', activation='relu'))
+model.add(GlobalAveragePooling2D())
+model.add(Dense(NUM_CLASSES, activation='softmax'))
 
-# start training
+
+print(model.summary())
+
+model.compile(optimizer=Adam(learning_rate=0.0001),
+              loss='categorical_crossentropy',  metrics=['accuracy'])
+
 model.fit(np.array(data), np.array(labels), epochs=10)
 
-# save the model for later use
-model.save("rock-paper-scissors-model.h5")
+model.save("RPS-model.h5")
