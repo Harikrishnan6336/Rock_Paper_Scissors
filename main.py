@@ -91,6 +91,7 @@ while True:
                 normalized = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized
                 pred = model.predict(data)
+                print(pred)
                 move_code = np.argmax(pred[0])
                 user_move_name = mapper(move_code)
                 if(user_move_name == "none"):
