@@ -19,6 +19,8 @@ firsttime = False
 exit = False
 you = 0
 ai = 0
+cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
+cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     ret, frame = img.read()
@@ -27,7 +29,7 @@ while True:
     if not ret:
         continue
 
-    frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
+    frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3) 
     frame2 = frame[320:590, 100:340]
     image = cv2.resize(frame2, (240, 240))
     image_array = np.asarray(image)
@@ -74,7 +76,7 @@ while True:
         if(firsttime):
             frame = cv2.rectangle(
                 frame, (320, 100), (590, 340), (0, 0, 255), 3)
-            cv2.imshow("img", frame)
+            cv2.imshow('Frame', frame)
             if(check < 4):
                 cv2.putText(frame,  "Deliver in {}".format(
                     4-int(check)), (365, 300), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
@@ -111,6 +113,18 @@ while True:
                             font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 cv2.putText(frame,  winner, (480, 385), font,
                             1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(frame, "user :", (100, 100), font,
+                            1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(frame,user_move_name, (40, 10), font,
+                            1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(frame, "A.I :", (70, 10), font,
+                            1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(frame, computer_move_name, (100, 10), font,
+                            1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(frame, "Winner:", (130, 10), font,
+                            1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(frame,winner, (160, 10), font,
+                            1, (0, 255, 0), 2, cv2.LINE_AA)
                 print("user :"+user_move_name+"    A.I :" +
                       computer_move_name+"    Winner:"+winner)
                 firsttime = False
@@ -125,7 +139,7 @@ while True:
             cv2.putText(frame,  "Press Q to quit", (40, 455),
                         font, 1, (0, 255, 255), 2, cv2.LINE_AA)
 
-        cv2.imshow("img", frame)
+        cv2.imshow('Frame', frame)
         if cv2.waitKey(1) & 0xff == ord('s'):
             firsttime = True
             start = time.time()
@@ -143,7 +157,7 @@ while True:
         break
     if(exit):
         break
-    cv2.imshow("img", frame)
+    cv2.imshow('Frame', frame)
     cv2.imshow("A.I move", ai_frame)
 
 
