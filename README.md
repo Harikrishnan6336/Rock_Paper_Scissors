@@ -1,40 +1,83 @@
-# rock-paper-scissors
-https://youtu.be/0uSA3xyXlwM 
-
-An AI to play the Rock Paper Scissors game
-
-## Requirements
-- Python 3
-- Keras
-- Tensorflow
-- OpenCV
-
-## Set up instructions
-1. Clone the repo.
+# ✊Rock_✋Paper_✌Scissors
 
 
-2. Install the dependencies
+
+## 📘 Description
+
+
+
+## 🏃‍♂️ Getting Started
+
+
+
+
+
+### 👨🏻‍🏫  Prerequisites
+
+To install all the dependencies, run:
+
+``` pip install --user -r requirements.txt ```
+
+
+## 🔧 How to Install
+
+1.👯 Clone the Repository:
 ```sh
-$ pip install -r requirements.txt
+$ git clone https://github.com/Harikrishnan6336/Rock_Paper_Scissors.git 
 ```
 
-3. Gather Images for each gesture (rock, paper and scissors and None):
+2. Then move to the working directory.
+
+3. Collect images for each label (rock, paper and scissors and None):
 In this example, we gather 200 images for the "rock" gesture similarly do for paper,scissors and none
 ```sh
-$ python3 gather_images.py rock 200
+$ python3 collect_images.py <label_name> <num_samples> 
+```
+For example
+```sh
+$ python3 collect_images.py paper 200 
 ```
 
 4. Train the model
 ```sh
-$ python3 train.py
+$ python3 train.py 
 ```
 
-5. Test the model on some images
+5. Play the game ✨
 ```sh
-$ python3 test.py <path_to_test_image>
+$ python3 main.py
 ```
 
-6. Play the game with your computer!
-```sh
-$ python3 play.py
-```
+
+## Built With ❤️ 
+
+* [Python3.6](https://docs.python.org/3.6/) - ⚠️️ Warning : Tensorflow is not supported on any version of python above 3.6 as of now.
+* [Tensorflow2.0](https://www.tensorflow.org/) - The deep learning framework used
+* [OpenCV4](https://opencv.org/) - A library of programming functions mainly used for real-time computer vision
+* [SqueezeNet](https://github.com/rcmalli/keras-squeezenet) - A deep neural network for computer vision 
+
+
+## 💁🏻 Contributing
+[![Contributors][contributors-shield]][contributors-url]
+
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. 🍴 Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/newFeature`)
+3. Commit your Changes (`git commit -m 'Add some newFeature'`)
+4. Push to the Branch (`git push origin feature/newFeature`)
+5. Open a Pull Request
+
+Please feel free to raise any issue...
+
+
+## License
+[![MIT License][license-shield]][license-url]
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-url]: https://github.com/Harikrishnan6336/Rock_Paper_Scissors/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-url]: https://github.com/Harikrishnan6336/Rock_Paper_Scissors/graphs/contributors
