@@ -19,8 +19,6 @@ firsttime = False
 exit = False
 you = 0
 ai = 0
-cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
-cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     ret, frame = img.read()
@@ -46,7 +44,10 @@ while True:
     end = time.time()
     check = 0.0
     gate = 1
-
+    window_width = 1200
+    window_height = 820
+    cv2.namedWindow('Frame', cv2.WINDOW_NORMAL)
+    cv2.resizeWindow('Frame', window_width, window_height) 
     while(True):
 
         end = time.time()
