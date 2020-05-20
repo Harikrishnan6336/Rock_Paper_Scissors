@@ -43,7 +43,7 @@ labels = np_utils.to_categorical(labels)
 
 model = Sequential()
 model.add(SqueezeNet(input_shape=(240, 240, 3), include_top=False))
-model.add(Dropout(0.25))
+model.add(Dropout(0.4))
 model.add(Conv2D(32, (1, 1), padding='valid', activation='relu'))
 model.add(GlobalAveragePooling2D())
 model.add(Dense(NUM_CLASSES, activation='softmax'))
