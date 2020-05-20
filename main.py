@@ -28,7 +28,7 @@ while True:
         continue
 
     frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
-    frame2 = frame[320:590, 100:340]
+    frame2 = frame[100:340, 320:590]
     image = cv2.resize(frame2, (240, 240))
     image_array = np.asarray(image)
     normalized = (image_array.astype(np.float32) / 127.0) - 1
@@ -47,7 +47,7 @@ while True:
     window_width = 1200
     window_height = 820
     cv2.namedWindow('Frame', cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('Frame', window_width, window_height) 
+    cv2.resizeWindow('Frame', window_width, window_height)
     while(True):
 
         end = time.time()
@@ -88,7 +88,10 @@ while True:
                 cv2.imshow("A.I move", ai_frame)
                 gate = 0
             elif(check >= 4):
-                frame2 = frame[320:590, 100:340]
+                frame2 = frame[100:340, 320:590]
+                # Below line for development purpose...
+                cv2.imshow('cap image', frame2)
+
                 image = cv2.resize(frame2, (240, 240))
                 image_array = np.asarray(image)
                 normalized = (image_array.astype(np.float32) / 127.0) - 1
