@@ -146,6 +146,7 @@ while True:
     if(exit):
         break
     cv2.imshow('Frame', frame)
+
     cv2.imshow("A.I move", ai_frame)
 
 
