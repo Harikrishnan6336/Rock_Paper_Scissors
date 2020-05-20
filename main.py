@@ -19,6 +19,8 @@ firsttime = False
 exit = False
 you = 0
 ai = 0
+cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
+cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     ret, frame = img.read()
@@ -74,13 +76,13 @@ while True:
         if(firsttime):
             frame = cv2.rectangle(
                 frame, (320, 100), (590, 340), (0, 0, 255), 3)
-            cv2.imshow("img", frame)
+            cv2.imshow('Frame', frame)
             if(check < 4):
                 cv2.putText(frame,  "Deliver in {}".format(
                     4-int(check)), (365, 300), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
             elif(check >= 3.5 and gate == 1):
                 t = random.choice([0, 1, 2])
-                computer_move_name = mapper(t)
+                computer_move_name = move_conv(t)
                 ai_frame = cv2.imread(s[t])
                 cv2.imshow("A.I move", ai_frame)
                 gate = 0
@@ -97,8 +99,7 @@ while True:
                 if(user_move_name == "none"):
                     ai_frame = cv2.imread(s[3])
                 if user_move_name != "none":
-                    result = find_winner(
-                        user_move_name, computer_move_name)
+                    result = find_winner(user_move_name, computer_move_name)
                     if(result == 0):
                         ai = ai+1
                         winner = "A.I"
@@ -125,7 +126,7 @@ while True:
             cv2.putText(frame,  "Press Q to quit", (40, 455),
                         font, 1, (0, 255, 255), 2, cv2.LINE_AA)
 
-        cv2.imshow("img", frame)
+        cv2.imshow('Frame', frame)
         if cv2.waitKey(1) & 0xff == ord('s'):
             firsttime = True
             start = time.time()
@@ -143,7 +144,7 @@ while True:
         break
     if(exit):
         break
-    cv2.imshow("img", frame)
+    cv2.imshow('Frame', frame)
     cv2.imshow("A.I move", ai_frame)
 
 
