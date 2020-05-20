@@ -62,7 +62,7 @@ while True:
     cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 2)
 
     if start:
-        roi = frame[320:590, 100:340]
+        roi = frame[100:340, 320:590]
         save_path = os.path.join(IMG_CLASS_PATH, '{}.jpg'.format(count + 1))
         cv2.imwrite(save_path, roi)
         count += 1
