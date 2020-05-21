@@ -1,15 +1,16 @@
 # ✊Rock_✋Paper_✌Scissors
 
+## Table of Contents
 
 - [📘 Description](#---description)
 - [🏃‍♂️ Getting Started](#------getting-started)
   * [👨🏻‍🏫  Prerequisites](#---------prerequisites)
-- [🔧 How to Install](#---how-to-install)
+  * [🔧 How to Install](#---how-to-install)
 - [Built With ❤️](#built-with---)
 - [💁🏻 Contributing](#-----contributing)
 - [License](#license)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ## 📘 Description
@@ -30,7 +31,7 @@ To install all the dependencies, run:
 ``` pip install --user -r requirements.txt ```
 
 
-## 🔧 How to Install
+### 🔧 How to Install
 
 1.👯 Clone the Repository:
 ```sh
