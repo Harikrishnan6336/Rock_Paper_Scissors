@@ -1,19 +1,16 @@
 # ✊Rock_✋Paper_✌Scissors
 
 
-## Table of Contents
+- [📘 Description](#---description)
+- [🏃‍♂️ Getting Started](#------getting-started)
+  * [👨🏻‍🏫  Prerequisites](#---------prerequisites)
+- [🔧 How to Install](#---how-to-install)
+- [Built With ❤️](#built-with---)
+- [💁🏻 Contributing](#-----contributing)
+- [License](#license)
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ## 📘 Description
 
