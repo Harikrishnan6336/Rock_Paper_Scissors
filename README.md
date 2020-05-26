@@ -1,5 +1,16 @@
 # ✊Rock_✋Paper_✌Scissors
 
+## Table of Contents
+
+- [📘 Description](#---description)
+- [🏃‍♂️ Getting Started](#------getting-started)
+  * [👨🏻‍🏫  Prerequisites](#---------prerequisites)
+  * [🔧 How to Install](#---how-to-install)
+- [Built With ❤️](#built-with---)
+- [💁🏻 Contributing](#-----contributing)
+- [License](#license)
+
+
 
 
 ## 📘 Description
@@ -12,6 +23,7 @@
 
 
 
+
 ### 👨🏻‍🏫  Prerequisites
 
 To install all the dependencies, run:
@@ -19,7 +31,7 @@ To install all the dependencies, run:
 ``` pip install --user -r requirements.txt ```
 
 
-## 🔧 How to Install
+### 🔧 How to Install
 
 1.👯 Clone the Repository:
 ```sh
