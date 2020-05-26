@@ -70,6 +70,8 @@ while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(frame, "Collecting {}".format(count),
                 (5, 50), font, 0.7, (0, 255, 255), 2, cv2.LINE_AA)
+    cv2.putText(frame, "Press 'c' to start/pause the image collection process",
+                (25, 410), font, 0.7, (255, 0, 0), 2, cv2.LINE_AA)
     cv2.imshow("Collecting images", frame)
 
     k = cv2.waitKey(10)
