@@ -29,15 +29,13 @@ while True:
 
     frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
     frame2 = frame[100:340, 320:590]
-    image = cv2.resize(frame2, (240, 240))
-    image_array = np.asarray(image)
-    normalized = (image_array.astype(np.float32) / 127.0) - 1
-    data[0] = normalized
+    image = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
+    image = cv2.resize(image, (240, 240))
+    pred = model.predict(np.array([image]))
 
     winner = "None"
 
     ai_frame = cv2.imread(s[3])
-    pred = model.predict(data)
     move_code = np.argmax(pred[0])
 
     start = time.time()
@@ -53,6 +51,7 @@ while True:
         end = time.time()
         check = end-start
         ret, frame = img.read()
+
         frame = cv2.flip(frame, 1)
         frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
         cv2.putText(frame,  "------".format(you), (3, 87),
@@ -89,9 +88,9 @@ while True:
                 gate = 0
             elif(check >= 4):
                 frame2 = frame[100:340, 320:590]
-
-                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-                image = cv2.resize(frame2, (240, 240))
+                cv2.imshow(" cap image", frame2)
+                image = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
+                image = cv2.resize(image, (240, 240))
                 pred = model.predict(np.array([image]))
                 print(pred)
                 move_code = np.argmax(pred[0])
