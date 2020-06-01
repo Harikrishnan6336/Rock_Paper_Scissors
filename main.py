@@ -89,16 +89,13 @@ while True:
                 gate = 0
             elif(check >= 4):
                 frame2 = frame[100:340, 320:590]
-                # Below line for development purpose...
-                cv2.imshow('cap image', frame2)
 
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
                 image = cv2.resize(frame2, (240, 240))
-                image_array = np.asarray(image)
-                normalized = (image_array.astype(np.float32) / 127.0) - 1
-                data[0] = normalized
-                pred = model.predict(data)
+                pred = model.predict(np.array([image]))
                 print(pred)
                 move_code = np.argmax(pred[0])
+                print(move_code)
                 user_move_name = move_conv(move_code)
                 if(user_move_name == "none"):
                     ai_frame = cv2.imread(s[3])
