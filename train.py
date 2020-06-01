@@ -4,9 +4,11 @@ import numpy as np
 from keras_squeezenet import SqueezeNet
 from keras.optimizers import Adam
 from tensorflow.python.keras.utils import np_utils
-from keras.layers import Dropout, GlobalAveragePooling2D, Conv2D, Dense
+from keras.layers import Dropout, GlobalAveragePooling2D, Conv2D, Dense,   MaxPooling2D, Flatten
 from keras.models import Sequential
 
+
+#from keras.layers import Activation, Dropout, Convolution2D, GlobalAveragePooling2D
 IMG_SAVE_PATH = 'train_data'
 
 CODES = {
@@ -41,6 +43,17 @@ data, labels = zip(*dataset)
 labels = list(map(code_conv, labels))
 labels = np_utils.to_categorical(labels)
 
+'''
+model = Sequential([
+    SqueezeNet(input_shape=(240, 240, 3), include_top=False),
+    Dropout(0.5),
+    Convolution2D(NUM_CLASSES, (1, 1), padding='valid'),
+    Activation('relu'),
+    GlobalAveragePooling2D(),
+    Activation('softmax')
+])
+
+'''
 model = Sequential()
 model.add(SqueezeNet(input_shape=(240, 240, 3), include_top=False))
 model.add(Dropout(0.4))
@@ -48,12 +61,25 @@ model.add(Conv2D(32, (1, 1), padding='valid', activation='relu'))
 model.add(GlobalAveragePooling2D())
 model.add(Dense(NUM_CLASSES, activation='softmax'))
 
+##############
+'''
+   model = Sequential()
+   model.add(Conv2D(32, kernel_size=(3, 3),
+                    activation='relu', input_shape=(240, 240, 3)))
+   model.add(Conv2D(64, (3, 3), activation='relu'))
+   model.add(MaxPooling2D(pool_size=(2, 2)))
+   model.add(Dropout(0.25))
+   model.add(Flatten())
+   model.add(Dense(128, activation='relu'))
+   model.add(Dropout(0.5))
+   model.add(Dense(NUM_CLASSES, activation='softmax'))
+
+   '''
 
 print(model.summary())
 
 model.compile(optimizer=Adam(learning_rate=0.0001),
               loss='categorical_crossentropy',  metrics=['accuracy'])
 
-model.fit(np.array(data), np.array(labels), epochs=10)
-
+model.fit(np.array(data), np.array(labels), epochs=10, verbose=2)
 model.save("RPS-model.h5")
