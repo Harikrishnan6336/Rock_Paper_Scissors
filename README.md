@@ -40,7 +40,7 @@ $ git clone https://github.com/Harikrishnan6336/Rock_Paper_Scissors.git
 
 2. Then move to the working directory.
 
-3. Collect images for each label (rock, paper and scissors and None):
+3. Collect images for each label (rock, paper and scissors and none):
 In this example, we gather 200 images for the "rock" gesture similarly do for paper,scissors and none
 ```sh
 $ python3 collect_images.py <label_name> <num_samples> 
