@@ -52,8 +52,7 @@ model.add(Dense(NUM_CLASSES, activation='softmax'))
 
 # print(model.summary())
 
-model.compile(optimizer=Adam(learning_rate=0.0001),
-              loss='categorical_crossentropy',  metrics=['accuracy'])
+model.compile(optimizer=Adam(lr=0.0001),loss='categorical_crossentropy',  metrics=['accuracy'])
 
 model.fit(np.array(data), np.array(labels), epochs=10, verbose=2)
 model.save("RPS-model.h5")
