@@ -6,7 +6,7 @@
 - [🏃‍♂️ Getting Started](#-getting-started)
   * [👨🏻‍🏫  Prerequisites](#--prerequisites)
   * [🔧 How to Install](#--how-to-install)
-- [Built With ❤️](#built-with---)
+- [Built With ❤️](#-built-with)
 - [💁🏻 Contributing](#-contributing)
 - [License](#license)
 
