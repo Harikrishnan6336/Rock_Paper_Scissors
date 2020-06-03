@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-- [📘 Description](#---description)
-- [🏃‍♂️ Getting Started](#------getting-started)
-  * [👨🏻‍🏫  Prerequisites](#---------prerequisites)
-  * [🔧 How to Install](#---how-to-install)
+- [📘 Description](#-description)
+- [🏃‍♂️ Getting Started](#-getting-started)
+  * [👨🏻‍🏫  Prerequisites](#--prerequisites)
+  * [🔧 How to Install](#--how-to-install)
 - [Built With ❤️](#built-with---)
-- [💁🏻 Contributing](#-----contributing)
+- [💁🏻 Contributing](#-contributing)
 - [License](#license)
 
 
