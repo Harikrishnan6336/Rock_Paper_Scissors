@@ -14,7 +14,7 @@ s = ["images/0.png", "images/1.png", "images/2.png", "images/3.jfif"]
 
 # Setting default cam to webcam and necesseary variables
 img = cv2.VideoCapture(0)
-data = np.ndarray(shape=(1, 240, 240, 3), dtype=np.float32)
+data = np.ndarray(shape=(1, 250, 250, 3), dtype=np.float32)
 firsttime = False
 exit = False
 you = 0
@@ -27,11 +27,15 @@ while True:
     if not ret:
         continue
 
-    frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
-    frame2 = frame[100:340, 320:590]
+    frame = cv2.rectangle(frame, (320, 100), (570, 350), (0, 0, 255), 3)
+    frame2 = frame[100:350, 320:570]
     image = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
-    image = cv2.resize(image, (240, 240))
+    image = cv2.resize(image, (250, 250))
     pred = model.predict(np.array([image]))
+    #image_array = np.asarray(frame2)
+    #normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
+    #data[0] = normalized_image_array
+    #pred = model.predict(data)
 
     winner = "None"
 
@@ -53,7 +57,7 @@ while True:
         ret, frame = img.read()
 
         frame = cv2.flip(frame, 1)
-        frame = cv2.rectangle(frame, (320, 100), (590, 340), (0, 0, 255), 3)
+        frame = cv2.rectangle(frame, (320, 100), (570, 350), (0, 0, 255), 3)
         cv2.putText(frame,  "------".format(you), (3, 87),
                     font, 1, (0, 0, 0), 2, cv2.LINE_AA)
         cv2.putText(frame,  "You : {}".format(you), (25, 117),
@@ -75,23 +79,29 @@ while True:
 
         if(firsttime):
             frame = cv2.rectangle(
-                frame, (320, 100), (590, 340), (0, 0, 255), 3)
+                frame, (320, 100), (570, 350), (0, 0, 255), 3)
             cv2.imshow('Frame', frame)
-            if(check < 4):
+            if(check < 3):
                 cv2.putText(frame,  "Deliver in {}".format(
-                    4-int(check)), (365, 300), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
-            elif(check >= 3.5 and gate == 1):
+                    3-int(check)), (365, 300), font, 1, (0, 255, 255), 2, cv2.LINE_AA)
+            elif(check >= 2.5 and gate == 1):
                 t = random.choice([0, 1, 2])
                 computer_move_name = move_conv(t)
                 ai_frame = cv2.imread(s[t])
                 cv2.imshow("A.I move", ai_frame)
                 gate = 0
-            elif(check >= 4):
-                frame2 = frame[100:340, 320:590]
-                cv2.imshow(" cap image", frame2)
+            elif(check >= 3):
+                frame2 = frame[100:350, 320:570]
+                #cv2.imshow("captured image", frame2)
                 image = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
-                image = cv2.resize(image, (240, 240))
+                image = cv2.resize(image, (250, 250))
                 pred = model.predict(np.array([image]))
+                """ image_array = np.asarray(frame2)
+                normalized_image_array = (
+                    image_array.astype(np.float32) / 127.0) - 1
+                data[0] = normalized_image_array
+                pred = model.predict(data) """
+
                 print(pred)
                 move_code = np.argmax(pred[0])
                 print(move_code)
@@ -121,9 +131,9 @@ while True:
                         font, 1, (0, 255, 0), 2, cv2.LINE_AA)
             cv2.putText(frame,  winner, (480, 385), font,
                         1, (0, 255, 0), 2, cv2.LINE_AA)
-            cv2.putText(frame,  "Press S to Play", (330, 210),
+            cv2.putText(frame,  "Press S to Play", (320, 210),
                         font, 1, (0, 255, 255), 2, cv2.LINE_AA)
-            cv2.putText(frame,  "Press Q to quit", (40, 455),
+            cv2.putText(frame,  "Press Q to quit", (40, 445),
                         font, 1, (0, 255, 255), 2, cv2.LINE_AA)
 
         cv2.imshow('Frame', frame)
