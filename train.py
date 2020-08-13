@@ -7,7 +7,7 @@ from tensorflow.python.keras.utils import np_utils
 from keras.layers import Dropout, GlobalAveragePooling2D, Conv2D, Dense,   MaxPooling2D, Flatten
 from keras.models import Sequential
 
-
+ 
 IMG_SAVE_PATH = 'train_data'
 
 CODES = {
@@ -35,7 +35,7 @@ for directory in os.listdir(IMG_SAVE_PATH):
             continue
         img = cv2.imread(os.path.join(path, item))
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, (240, 240))
+        img = cv2.resize(img, (250, 250))
         dataset.append([img, directory])
 
 data, labels = zip(*dataset)
@@ -44,7 +44,7 @@ labels = np_utils.to_categorical(labels)
 
 
 model = Sequential()
-model.add(SqueezeNet(input_shape=(240, 240, 3), include_top=False))
+model.add(SqueezeNet(input_shape=(250, 250, 3), include_top=False))
 model.add(Dropout(0.4))
 model.add(Conv2D(32, (1, 1), padding='valid', activation='relu'))
 model.add(GlobalAveragePooling2D())
