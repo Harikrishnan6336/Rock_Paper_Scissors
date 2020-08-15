@@ -96,11 +96,6 @@ while True:
                 image = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
                 image = cv2.resize(image, (250, 250))
                 pred = model.predict(np.array([image]))
-                """ image_array = np.asarray(frame2)
-                normalized_image_array = (
-                    image_array.astype(np.float32) / 127.0) - 1
-                data[0] = normalized_image_array
-                pred = model.predict(data) """
 
                 print(pred)
                 move_code = np.argmax(pred[0])
