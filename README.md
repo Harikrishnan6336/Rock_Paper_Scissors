@@ -19,10 +19,6 @@
 ## 🏃‍♂️ Getting Started
 
 
-
-
-
-
 ### 👨🏻‍🏫  Prerequisites
 
 To install all the dependencies, run:
@@ -69,7 +65,6 @@ $ python3 main.py
 
 
 ## 💁🏻 Contributing
-[![Contributors][contributors-shield]][contributors-url]
 
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -81,6 +76,13 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 Please feel free to raise any issue...
+
+## Contributors
+[![Contributors][contributors-shield]][contributors-url]
+
+- [Nandakishor M Pai](https://github.com/nandakishormpai2001)
+
+- [Hari Krishnan U](https://github.com/Harikrishnan6336)
 
 
 ## License
