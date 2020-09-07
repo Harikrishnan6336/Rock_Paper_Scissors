@@ -92,5 +92,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 [license-shield]: https://img.shields.io/github/contributors/Toshiuk/r5go-b2w-front.svg?style=flat-square
 [license-url]: https://github.com/Harikrishnan6336/Rock_Paper_Scissors/blob/master/LICENSE
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/Harikrishnan6336/Rock_Paper_Scissors
 [contributors-url]: https://github.com/Harikrishnan6336/Rock_Paper_Scissors/graphs/contributors
