@@ -1,8 +1,11 @@
 # ✊Rock_✋Paper_✌Scissors
 
+## 📘 Description
+
+A virtual rock-paper-scissors game that can be played against the computer.
+
 ## Table of Contents
 
-- [📘 Description](#-description)
 - [🏃‍♂️ Getting Started](#-getting-started)
   * [👨🏻‍🏫  Prerequisites](#--prerequisites)
   * [🔧 How to Install](#--how-to-install)
@@ -10,9 +13,6 @@
 - [💁🏻 Contributing](#-contributing)
 - [License](#license)
 
-
-
-## 📘 Description
 
 
 
