@@ -59,20 +59,20 @@ while True:
         frame = cv2.flip(frame, 1)
         frame = cv2.rectangle(frame, (320, 100), (570, 350), (0, 0, 255), 3)
         cv2.putText(frame,  "------".format(you), (3, 87),
-                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                    font, 1, (0, 0, 255), 2, cv2.LINE_AA)
         cv2.putText(frame,  "You : {}".format(you), (25, 117),
-                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                    font, 1, (0, 0, 255), 2, cv2.LINE_AA)
         cv2.putText(frame,  "A.I : {}".format(ai), (45, 157),
-                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                    font, 1,(0, 0, 255), 2, cv2.LINE_AA)
         cv2.putText(frame,  "------".format(you), (3, 187),
-                    font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                    font, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
         for i in range(112, 192, 50):
             cv2.putText(frame,  "|".format(you), (155, i),
-                        font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                        font, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
             cv2.putText(frame,  "|".format(you), (0, i),
-                        font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                        font, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
         if not ret:
             continue
@@ -140,8 +140,7 @@ while True:
 
         # To Exit from the game...
         if cv2.waitKey(1) & 0xff == ord('q'):
-            exit = True
-            break
+            exit(0)
 
     result = cv2.imread(s[3])
     if cv2.waitKey(1) & 0xff == ord('q'):
