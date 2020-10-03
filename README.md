@@ -34,23 +34,16 @@ $ git clone https://github.com/Harikrishnan6336/Rock_Paper_Scissors.git
 ```
 
 2. Then move to the working directory.
-
-3. Collect images for each label (rock, paper and scissors and none):
-In this example, we gather 200 images for the "rock" gesture similarly do for paper,scissors and none
 ```sh
-$ python3 collect_images.py <label_name> <num_samples> 
-```
-For example
-```sh
-$ python3 collect_images.py paper 200 
+$ cd Rock_Paper_Scissors
 ```
 
-4. Train the model
+3. Setup the game by providing images of Rock paper scissors and Nothing in the order while the program captures it when executing the command below
 ```sh
-$ python3 train.py 
+$ python3 setup.py 
 ```
 
-5. Play the game ✨
+4. Play the game ✨
 ```sh
 $ python3 main.py
 ```
